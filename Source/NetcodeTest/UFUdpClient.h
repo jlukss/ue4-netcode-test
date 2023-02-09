@@ -18,6 +18,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "UDPSocketConnect")
 		bool Connect(const FString& RemoteAddress, const int32 RemotePort, FString& ErrorMessage);
 
+
+	UFUNCTION(BlueprintCallable, Category = "UDPSocketConnect")
+		bool SendVectorData(const FVector& Vector, FString& ErrorMessage);
+
 	UFUNCTION(BlueprintCallable, Category = "UDPSocketConnect")
 		bool SendData(const FString& SendData, FString& ErrorMessage);
 

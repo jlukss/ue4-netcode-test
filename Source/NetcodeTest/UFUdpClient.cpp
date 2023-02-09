@@ -37,6 +37,24 @@
 		return true;
 	}
 
+	bool UFUdpClient::SendVectorData(const FVector& Vector, FString& ErrorMessage)
+	{
+		int32 BytesSent = 0;
+		TArray<uint8> SendDataBytes;
+		uint8 floatBytes[4];
+		memcpy(floatBytes, &Vector.X, sizeof(float));
+		SendDataBytes.Append(floatBytes, sizeof(float));
+
+		bool bSendSuccess = Socket->Send(SendDataBytes.GetData(), SendDataBytes.Num(), BytesSent);
+		if (!bSendSuccess)
+		{
+			ErrorMessage = "Failed to send data.";
+			return false;
+		}
+
+		return true;
+	}
+
 	bool UFUdpClient::SendData(const FString& SendData, FString& ErrorMessage)
 	{
 		int32 BytesSent = 0;
